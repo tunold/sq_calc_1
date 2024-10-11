@@ -61,26 +61,13 @@ bandgap = st.number_input('')
 def Voc_SQ(bandgap):
     return -.1788 + 0.93 * bandgap
 
-def Jsc_SQ(egap: float, jsc_int: list, en_AM15: list) -> float:
-    # Convert lists to numpy arrays for efficient operations
-    en_AM15 = np.array(en_AM15)
-    jsc_int = np.array(jsc_int)
-    
-    # Interpolate the value of jsc_int at the given egap
-    # np.interp assumes en_AM15 is sorted in ascending order, so reverse if necessary
-    if en_AM15[0] < en_AM15[-1]:
-        en_AM15 = en_AM15[::-1]
-        jsc_int = jsc_int[::-1]
-    
-    # Perform linear interpolation
-    interpolated_jsc = np.interp(egap, en_AM15, jsc_int)
-    
-    # Return the interpolated value multiplied by 1000
-    return interpolated_jsc * 1000
-
-
-
-
+def Jsc_SQ(egap, jsc_int,  en_AM15):
+    i=0
+    for en in en_AM15:
+        if en < egap:
+            break
+        i +=1
+    return jsc_int[i]*1000
 
 # Display the result with larger font for the SQ Radiative limit
 st.markdown(f"<p class='large-font'>The SQ Radiative limit is:   {round(Voc_SQ(bandgap), 2)}  eV</p>", unsafe_allow_html=True)
