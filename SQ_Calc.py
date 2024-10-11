@@ -80,13 +80,13 @@ def FF_SQ(Voc,n=1):
 
 ff= FF_SQ(qfls)
 
-pce = ff*qfls*jsc
+pce = ff*qfls*jsc/100
 
 # Display the result with larger font for the SQ Radiative limit
 st.markdown(f"<p class='large-font'>The SQ Radiative Voc is:   {round(qfls, 2)}  eV</p>", unsafe_allow_html=True)
 st.markdown(f"<p class='large-font'>The SQ Current is:   {round(jsc, 2)}  mA/cm2</p>", unsafe_allow_html=True)
 st.markdown(f"<p class='large-font'>The SQ FF is:   {round(ff, 2)}  mA/cm2</p>", unsafe_allow_html=True)
-st.markdown(f"<p class='large-font'>The SQ PCE is:   {round(pce, 2)}  mA/cm2</p>", unsafe_allow_html=True)
+st.markdown(f"<p class='large-font'>The SQ PCE is:   {round(pce, 2)}  %</p>", unsafe_allow_html=True)
 #st.dataframe(df_AM15)
 
 
