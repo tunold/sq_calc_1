@@ -89,4 +89,22 @@ st.markdown(f"<p class='large-font'>The SQ FF is:   {round(ff, 3)}  %</p>", unsa
 st.markdown(f"<p class='large-font'>The SQ PCE is:   {round(pce, 2)}  %</p>", unsafe_allow_html=True)
 #st.dataframe(df_AM15)
 
+pce1 = []
+energies = np.linspace(0.4,3)
+for energy in energies:
+    qfls1=Voc_SQ(energy)
+    jsc1 = Jsc_SQ(energy,Jsc_int, en_AM15)
+    ff1=FF_SQ(qfls1)
+    pce1.append(ff1*qfls1*jsc1/100)
+
+# Create a plot using matplotlib
+plt.figure(figsize=(3, 2))  # Optional: set the figure size
+plt.plot(energies, pce1, )
+plt.xlabel('Bandgap Energy (eV)')
+plt.ylabel('SQ- PCE')
+plt.title('SQ Efficiency')
+plt.legend()
+
+# Display the plot in Streamlit
+st.pyplot(plt)
 
