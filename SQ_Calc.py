@@ -35,8 +35,8 @@ st.markdown(
 fname = 'AM15_G_wav_Mod.csv'
 df_AM15 = pd.read_csv(fname, sep = ',')
 st.dataframe(df_AM15)
-#en_AM15 = df_AM15['Energy']
-#Jsc_int = df_AM14['Jsc_int']
+en_AM15 = df_AM15['Energy']
+Jsc_int = df_AM14['Jsc_int']
 
 st.write('This is a SQ Calculator')
 st.write('')
@@ -72,7 +72,7 @@ def Jsc_SQ(egap, jsc_int,  en_AM15):
 
 # Display the result with larger font for the SQ Radiative limit
 st.markdown(f"<p class='large-font'>The SQ Radiative limit is:   {round(Voc_SQ(bandgap), 2)}  eV</p>", unsafe_allow_html=True)
-#st.markdown(f"<p class='large-font'>The SQ Current is:   {round(Jsc_SQ(bandgap,Jsc_int, en_AM15), 2)}  mA/cm2</p>", unsafe_allow_html=True)
+st.markdown(f"<p class='large-font'>The SQ Current is:   {round(Jsc_SQ(bandgap,Jsc_int, en_AM15), 2)}  mA/cm2</p>", unsafe_allow_html=True)
 st.dataframe(df_AM15)
 
 
