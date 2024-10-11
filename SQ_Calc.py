@@ -34,7 +34,17 @@ st.markdown(
 
 fname = 'AM15_G_wav.csv'
 df_AM15 = pd.read_csv(fname, sep = '\t')
-plt.plot(df_AM15['wavelength'],df_AM15['AM15_G_wav'])
+
+# Create a plot using matplotlib
+plt.figure(figsize=(8, 6))  # Optional: set the figure size
+plt.plot(df_AM15['wavelength'], df_AM15['AM15_G_wav'], label='AM15 Spectrum')
+plt.xlabel('Wavelength (nm)')
+plt.ylabel('AM15 G (W/m²/nm)')
+plt.title('AM15 Spectrum Plot')
+plt.legend()
+
+# Display the plot in Streamlit
+st.pyplot(plt)
 
 st.write('This is a SQ Calculator')
 st.write('')
