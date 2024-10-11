@@ -33,7 +33,7 @@ st.markdown(
 )
 
 fname = 'AM15_G_wav_Mod.csv'
-df_AM15 = pd.read_csv(fname, sep = '\t')
+df_AM15 = pd.read_csv(fname, sep = ',')
 st.dataframe(df_AM15)
 #en_AM15 = df_AM15['Energy']
 #Jsc_int = df_AM14['Jsc_int']
