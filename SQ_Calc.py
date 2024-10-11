@@ -34,7 +34,7 @@ st.markdown(
 
 fname = 'AM15_G_wav_Mod.csv'
 df_AM15 = pd.read_csv(fname, sep = ',')
-st.dataframe(df_AM15)
+#st.dataframe(df_AM15)
 en_AM15 = df_AM15['Energy']
 Jsc_int = df_AM15['Jsc_int']
 
@@ -62,6 +62,8 @@ bandgap = st.number_input('')
 def Voc_SQ(bandgap):
     return -.1788 + 0.93 * bandgap
 
+qfls = Voc_SQ(bandgap)
+
 def Jsc_SQ(egap, jsc_int,  en_AM15):
     i=0
     for en in en_AM15:
@@ -70,9 +72,21 @@ def Jsc_SQ(egap, jsc_int,  en_AM15):
         i +=1
     return jsc_int[i]*1000
 
+jsc = Jsc_SQ(bandgap,Jsc_int, en_AM15)
+
+def FF_SQ(Voc,n=1):
+    kT = 0.026
+    return (Voc/(n*kT) - math.log(Voc/(n*kT) + 0.72)) /(1 + Voc/(n*kT))*100
+
+ff= FF_SQ(qfls)
+
+pce = FF*qfls*jsc
+
 # Display the result with larger font for the SQ Radiative limit
-st.markdown(f"<p class='large-font'>The SQ Radiative limit is:   {round(Voc_SQ(bandgap), 2)}  eV</p>", unsafe_allow_html=True)
-st.markdown(f"<p class='large-font'>The SQ Current is:   {round(Jsc_SQ(bandgap,Jsc_int, en_AM15), 2)}  mA/cm2</p>", unsafe_allow_html=True)
-st.dataframe(df_AM15)
+st.markdown(f"<p class='large-font'>The SQ Radiative Voc is:   {round(qfls, 2)}  eV</p>", unsafe_allow_html=True)
+st.markdown(f"<p class='large-font'>The SQ Current is:   {round(jsc, 2)}  mA/cm2</p>", unsafe_allow_html=True)
+st.markdown(f"<p class='large-font'>The SQ FF is:   {round(ff, 2)}  mA/cm2</p>", unsafe_allow_html=True)
+st.markdown(f"<p class='large-font'>The SQ PCE is:   {round(pce, 2)}  mA/cm2</p>", unsafe_allow_html=True)
+#st.dataframe(df_AM15)
 
 
