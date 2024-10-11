@@ -64,3 +64,5 @@ def Voc_SQ(bandgap):
 st.markdown(f"<p class='large-font'>The SQ Radiative limit is:   {round(Voc_SQ(bandgap), 2)}  eV</p>", unsafe_allow_html=True)
 
 st.dataframe(df_AM15)
+
+df_AM15.to_csv('save_test.csv')
