@@ -35,8 +35,13 @@ st.markdown(
 fname = 'AM15_G_wav.csv'
 df_AM15 = pd.read_csv(fname, sep = '\t')
 
+st.write('This is a SQ Calculator')
+st.write('')
+st.write('')
+st.write('')
+
 # Create a plot using matplotlib
-plt.figure(figsize=(8, 6))  # Optional: set the figure size
+plt.figure(figsize=(6, 4))  # Optional: set the figure size
 plt.plot(df_AM15['wavelength'], df_AM15['AM15_G_wav'], label='AM15 Spectrum')
 plt.xlabel('Wavelength (nm)')
 plt.ylabel('AM15 G (W/m²/nm)')
@@ -46,10 +51,6 @@ plt.legend()
 # Display the plot in Streamlit
 st.pyplot(plt)
 
-st.write('This is a SQ Calculator')
-st.write('')
-st.write('')
-st.write('')
 # Input box for Bandgap value
 st.write('Please enter a Bandgap Value in eV')
 bandgap = st.number_input('')
