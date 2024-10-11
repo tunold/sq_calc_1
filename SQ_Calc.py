@@ -1,5 +1,7 @@
 import streamlit as st
 import math
+import pandas as pd
+import matplotlib.pyplot as plt
 
 # Title of the app
 
@@ -30,6 +32,10 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+fname = 'AM15_G_wav.csv'
+df_AM15 = pd.read_csv(fname, sep = '\t')
+plt.plot(df_AM15['wavelength'],df_AM15['AM15_G_wav'])
+
 st.write('This is a SQ Calculator')
 st.write('')
 st.write('')
@@ -37,7 +43,6 @@ st.write('')
 # Input box for Bandgap value
 st.write('Please enter a Bandgap Value in eV')
 bandgap = st.number_input('')
-
 
 # Function to calculate SQ Voc
 def Voc_SQ(bandgap):
