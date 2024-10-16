@@ -57,7 +57,7 @@ st.pyplot(plt)
 
 # Input box for Bandgap value
 st.write('Please enter a Bandgap Value in eV')
-bandgap = st.number_input('')
+bandgap = st.number_input('', value = 1.14)
 
 # Function to calculate SQ Voc
 def Voc_SQ(bandgap):
